@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ultimate Rose Day — Ayu ❤️</title>
+
+<style>
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ text-align:center;
+ background:linear-gradient(135deg,#ff4e50,#ff9a9e);
+ color:white;
+ overflow-x:hidden;
+}
+.screen{display:none;padding:30px;}
+.active{display:block;}
+button{
+ background:white;color:#ff4e50;border:none;
+ padding:14px 22px;font-size:18px;
+ border-radius:30px;cursor:pointer;margin:10px;
+}
+.slide{
+ width:90%;max-width:420px;
+ border-radius:20px;display:none;
+ box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+.float{position:fixed;top:-10px;animation:fall linear infinite;}
+@keyframes fall{to{transform:translateY(110vh);}}
+.chat{max-width:600px;margin:auto;text-align:left;}
+.msg{background:white;color:#333;padding:12px;border-radius:15px;margin:10px;width:fit-content;}
+.me{margin-left:auto;background:#ffe6ea;}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 EMBEDDED MUSIC -->
+<audio autoplay loop>
+<source type="audio/mpeg"
+src="data:audio/mpeg;base64,PASTE_YOUR_BASE64_MP3_HERE">
+</audio>
+
+<!-- WELCOME -->
+<div id="welcome" class="screen active">
+<h1>🌹 A Special Surprise 🌹</h1>
+<h2>For Ayu Singh ❤️</h2>
+<button onclick="go('main')">Enter</button>
+</div>
+
+<!-- MAIN -->
+<div id="main" class="screen">
+<h1>Happy Rose Day ❤️</h1>
+<div id="typing"></div>
+
+<!-- 📸 EMBEDDED PHOTOS -->
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE1_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE2_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE3_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE4_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE5_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE6_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE7_BASE64">
+<img class="slide" src="data:image/jpeg;base64,PASTE_IMAGE8_BASE64">
+
+<br>
+<button onclick="go('proposal')">Special Question 💍</button>
+<button onclick="go('chat')">Love Chat 💬</button>
+<button onclick="go('game')">Love Game 🎯</button>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="screen">
+<h1>Ayu ❤️</h1>
+<h2>Will you always be mine?</h2>
+<button onclick="yesEffect()">YES ❤️</button>
+</div>
+
+<!-- CHAT -->
+<div id="chat" class="screen">
+<h1>Our Messages 💬</h1>
+<div class="chat">
+<div class="msg">You are my favorite rose 🌹</div>
+<div class="msg me">Really?</div>
+<div class="msg">Forever and always ❤️</div>
+</div>
+<button onclick="go('main')">Back</button>
+</div>
+
+<!-- GAME -->
+<div id="game" class="screen">
+<h1>Catch Love ❤️</h1>
+<p>Score: <span id="score">0</span></p>
+<div id="heart" style="font-size:40px;cursor:pointer;">❤️</div>
+<button onclick="go('main')">Back</button>
+</div>
+
+<script>
+function go(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+
+/* typing */
+const text="Ayu, you are the most beautiful part of my world. Happy Rose Day my love 🌹❤️";
+let i=0;
+function type(){
+ if(i<text.length){
+  typing.innerHTML+=text[i++];
+  setTimeout(type,40);
+ }
+}
+type();
+
+/* slideshow */
+let si=0;
+const slides=document.querySelectorAll(".slide");
+function show(){
+ slides.forEach(s=>s.style.display="none");
+ si=(si+1)%slides.length;
+ slides[si].style.display="block";
+ setTimeout(show,2000);
+}
+show();
+
+/* floating hearts/roses */
+function floatItem(){
+ const d=document.createElement("div");
+ d.className="float";
+ d.innerHTML=Math.random()>.5?"🌹":"❤️";
+ d.style.left=Math.random()*100+"vw";
+ d.style.fontSize=(16+Math.random()*24)+"px";
+ d.style.animationDuration=(4+Math.random()*5)+"s";
+ document.body.appendChild(d);
+ setTimeout(()=>d.remove(),9000);
+}
+setInterval(floatItem,300);
+
+/* fireworks */
+function yesEffect(){
+ for(let i=0;i<40;i++){
+  const e=document.createElement("div");
+  e.innerHTML="✨";
+  e.style.position="fixed";
+  e.style.left=Math.random()*100+"vw";
+  e.style.top=Math.random()*100+"vh";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),1000);
+ }
+ alert("Love you Ayu ❤️");
+}
+
+/* game */
+let score=0;
+heart.onclick=()=>{
+ score++;
+ document.getElementById("score").innerText=score;
+};
+</script>
+
+</body>
+</html>
